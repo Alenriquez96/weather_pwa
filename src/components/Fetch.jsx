@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Fetch = () => {
     const dispatch = useDispatch();
+    const totalCities = useSelector(state=>state.totalCities);
+    console.log(totalCities);
 
     const [cityName, setCityName] = useState("los angeles");
     const [error, setError] = useState("");

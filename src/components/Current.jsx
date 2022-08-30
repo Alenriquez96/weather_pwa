@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from "axios";
 
 
@@ -16,13 +16,14 @@ const Current = () => {
                     const req = await axios(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_API_KEY}`);
                     const data = req.data;
                     console.log(data);
+
                     dispatch({
-                        type: "CURRENT_CITY",
+                        type: "WEATHER_DATA",
                         payload: data
-                    })
+                    });
                 });
             } else {
-            console.warn("Tu navegador no soporta Geolocalización!! ");
+                console.warn("Tu navegador no soporta Geolocalización!! ");
             }
 
         } catch (error) {
@@ -32,7 +33,7 @@ const Current = () => {
 
 
     return (
-    <button id='currentLocBtn' onClick={handleClick}>Search current location</button>
+        <button id='currentLocBtn' onClick={handleClick}>Search current location</button>
     )
 }
 

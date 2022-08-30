@@ -1,24 +1,21 @@
 const initState = {
     cityWeather : {},
     totalCities : [],
-    currentCity : {}
 }
 
 
 function weatherCast(state=initState, action) {
     switch (action.type) {
         case "WEATHER_DATA":
+            if (state.totalCities.indexOf(action.payload) ===-1) {
+                state.totalCities.push(action.payload);
+            }
             return{
                 ...state,
                 cityWeather: action.payload,
-                totalCities: initState.totalCities.push(action.payload)
+
             }    
-        
-        case "CURRENT_CITY":
-            return{
-                ...state,
-                currentCity: action.payload
-            }
+
         default:
             return state;
     }

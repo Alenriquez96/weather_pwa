@@ -135,6 +135,7 @@ h1{
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
   max-height: 457px;
   overflow-y: auto;
 }

@@ -12,7 +12,6 @@ const Main = () => {
 
     const [showAll, setShowAll] = useState(false);
 
-    console.log(showAll);
     const handleClick = () =>{
       if (showAll===false) {
         setShowAll(true);

@@ -7,7 +7,24 @@ const initState = {
 function weatherCast(state=initState, action) {
     switch (action.type) {
         case "WEATHER_DATA":
-            state.totalCities.push(action.payload)
+            function addUniqeObj(data) {
+                let index = -1;
+              
+                for(let i = 0; i < state.totalCities.length; i++) {
+                  if(state.totalCities[i].name === data.name) {
+                    index = i;
+                  }
+                }
+              
+                if(index > -1) {
+                  state.totalCities[index] = data;
+                } else {
+                  state.totalCities.push(data)
+                }
+              
+              }
+              addUniqeObj(action.payload);
+              
             return{
                 ...state,
                 cityWeather: action.payload,

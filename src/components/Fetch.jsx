@@ -11,12 +11,16 @@ const Fetch = () => {
     const [cityName, setCityName] = useState("los angeles");
     const [error, setError] = useState("");
 
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        setCityName(e.target.city.value)
+    }
+
     useEffect(() => {
       const httpRequest = async()=>{
         try {
             const req = await axios(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_API_KEY}`);
             const data = req.data;
-            console.log(data);
             dispatch({
                 type: "WEATHER_DATA",
                 payload: data
@@ -30,10 +34,6 @@ const Fetch = () => {
       httpRequest();
     }, [cityName]);
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        setCityName(e.target.city.value)
-    }
     
   return (
     <form onSubmit={handleSubmit}>

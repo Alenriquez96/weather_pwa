@@ -39,7 +39,7 @@ const Fetch = () => {
     <form onSubmit={handleSubmit}>
         <div>
             <input type="text" id='cityName' name='city' placeholder='Introduce city'/>
-            <button type="submit" value="Submit"><img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_location_on_48px-512.png" alt="" /></button>
+            <button type="submit" value="Submit"><img style={{borderRadius:"5px"}} src="https://i.pinimg.com/originals/b7/02/af/b702afc7b811840ebc49037cdc98bc45.jpg" alt="" /></button>
         </div>
         {error==="ERR_BAD_REQUEST"?<h3 style={{color:"red"}}>City was not found</h3>:""}
     </form>

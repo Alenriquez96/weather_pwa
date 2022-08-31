@@ -7,9 +7,7 @@ const initState = {
 function weatherCast(state=initState, action) {
     switch (action.type) {
         case "WEATHER_DATA":
-            if (state.totalCities.indexOf(action.payload) ===-1) {
-                state.totalCities.push(action.payload);
-            }
+            state.totalCities.push(action.payload)
             return{
                 ...state,
                 cityWeather: action.payload,

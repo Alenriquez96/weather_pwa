@@ -15,7 +15,6 @@ const Current = () => {
                     let lng = position.coords.longitude;
                     const req = await axios(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_API_KEY}`);
                     const data = req.data;
-                    console.log(data);
 
                     dispatch({
                         type: "WEATHER_DATA",

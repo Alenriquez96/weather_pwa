@@ -4,7 +4,8 @@ import Weather from './Weather';
 import Current from './Current';
 import AllCities from './AllCities';
 import { useSelector } from 'react-redux/es/exports';
-import { BounceLoader } from 'react-spinners';
+import { FadeLoader } from 'react-spinners';
+import { motion } from 'framer-motion';
 
 const Main = () => {
     const cityData = useSelector(state=>state.cityWeather);
@@ -23,19 +24,33 @@ const Main = () => {
     const chooseData = () =>{
       if (showAll===true) {
          return <AllCities totalCities={totalCities}/>
-      } else if (showAll===false && cityData.main) {
+      } 
+      else if (showAll===false && cityData.main) {
          return <Weather cityData={cityData}/>
-      } else if(!cityData.main){
-        <BounceLoader color='#fdf8f8' size={300}/>
+      } 
+      else if(!cityData.main){
+        return <div id='divSpinner'><FadeLoader color='#fdf8f8' height={20}/></div>
       }
     }
 
   return (
     <main>
-        {totalCities.length>0?<button id='btnSearchs' onClick={handleClick}>{showAll===true?"Back":"Your searchs"}</button>:""}
+        {totalCities.length>0?
+          <motion.button
+            id='btnSearchs' 
+            onClick={handleClick}
+            whileHover={{
+            scale: 1.2,
+            transition: { duration: 0.3 },
+            }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }} 
+           >
+            {showAll===true?"Back":"Your searchs"}
+          </motion.button>:""}
         {showAll===false?<Fetch/>:""}
-        {showAll===false?<Current/>:""}
         {chooseData()}
+        {showAll===false?<Current/>:""}
     </main>
   )
 }

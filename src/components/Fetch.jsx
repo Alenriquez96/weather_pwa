@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
+
 
 
 const Fetch = () => {
@@ -37,7 +39,11 @@ const Fetch = () => {
     <form onSubmit={handleSubmit}>
         <div>
             <input type="text" id='cityName' name='city' placeholder='Introduce city'/>
-            <button type="submit" value="Submit"><img style={{borderRadius:"5px"}} src="https://i.pinimg.com/originals/b7/02/af/b702afc7b811840ebc49037cdc98bc45.jpg" alt="" /></button>
+            <motion.button             
+            whileHover={{
+            scale: 1.3,
+            transition: { duration: 0.3 },
+            }} type="submit" value="Submit"><img style={{borderRadius:"5px"}} src="https://i.pinimg.com/originals/b7/02/af/b702afc7b811840ebc49037cdc98bc45.jpg" alt="" /></motion.button>
         </div>
         {error==="ERR_BAD_REQUEST"?<h3 style={{color:"red"}}>City was not found</h3>:""}
     </form>

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+
 
 
 const Weather = (props) => {
@@ -35,7 +37,12 @@ const Weather = (props) => {
     }
 
   return (
-    <section>
+    <motion.section 
+    animate={{ opacity: 1 }}
+    initial={{ opacity: 0 }}
+    exit={{ opacity: 0 }}
+    layout       
+    >
         {flip===true?
         <article style={{display : "flex", flexDirection: "column", justifyContent: "center"}}>
           <p>Feels like degrees: {(cityData.main.feels_like - 273.15).toFixed(2)} Cº</p>
@@ -63,9 +70,15 @@ const Weather = (props) => {
             <p>Min: {(cityData.main.temp_min - 273.15).toFixed(2)} Cº</p>
           </div>
         </article>}   
-        <button id='btnDetails' onClick={handleClick}>{flip===false?"Show":"Hide"} Details</button>
+        <motion.button 
+          id='btnDetails' 
+          onClick={handleClick}
+          whileTap={{ scale: 0.7 }}
+          >
+            {flip===false?"Show":"Hide"} Details
+        </motion.button>
 
-    </section>
+    </motion.section>
   )
 }
 
